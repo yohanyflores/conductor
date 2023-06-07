@@ -23,6 +23,10 @@ plugins {
     id 'org.sonarqube' version '3.4.0.2513'
 }
 
+if (project.hasProperty('projVersion')) {
+  rootProject.version = project.projVersion
+}
+
 /*
  *  Copyright 2021 Netflix, Inc.
  *  <p>
@@ -87,6 +91,8 @@ allprojects {
             }
         }
     }
+
+    apply from:"$rootDir/gitlab-maven-publish.gradle"
 
     dependencyManagement {
         imports {
